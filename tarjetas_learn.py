@@ -1,26 +1,25 @@
 import flet as ft
-# ─── Widget: Tarjeta de Anuncio ───────────────────────────────────────────────
+# ─── Widget: Tarjeta de metadatos ───────────────────────────────────────────────
 
 
-def actualizar_card_learn(nueva_data,page: ft.Page,lista):
+def actualizar_card_learn(nueva_data,page: ft.Page,lista,mostrar_detalle):
     # Reemplazamos los controles viejos por las tarjetas nuevas
-    lista.controls = [crear_card_learn(m, page) for m in nueva_data]
+    lista.controls = [crear_card_learn(m, page,mostrar_detalle) for m in nueva_data]
     page.update() # Refresca solo esta parte de la pantalla
 
 
 
-def crear_card_learn(anuncio: dict, page: ft.Page):
-    if anuncio["icono"] == "TRENDING_UP":
+def crear_card_learn(metadatos: dict, page: ft.Page,mostrar_detalle):
+    if metadatos["icono"] == "TRENDING_UP":
         color_ = "#006E1C"
-    elif anuncio["icono"] == "TRENDING_DOWN":
+    elif metadatos["icono"] == "TRENDING_DOWN":
         color_ = "#B1416B"
-    elif anuncio["icono"] == "BUILD_OUTLINED":
+    elif metadatos["icono"] == "BUILD_OUTLINED":
         color_ = "#EB9D0E"
     else:
         color_ = "#4169E1"
     
 
-    
     card = ft.Card(
         elevation=0,
         shape=ft.RoundedRectangleBorder(radius=16),
@@ -33,14 +32,14 @@ def crear_card_learn(anuncio: dict, page: ft.Page):
                 spacing=0,
                 controls=[
                     ft.Container(height=10),
-                    ft.Text(anuncio["titulo"], size=15, 
+                    ft.Text(metadatos["titulo"], size=15, 
                             weight=ft.FontWeight.W_600,
                             align=ft.Alignment.CENTER,
                             color=ft.Colors.ON_SURFACE),
                     ft.Container(height=6),
                     
                     ft.Text(
-                        anuncio["descripcion"],
+                        metadatos["description"],
                         max_lines=2,
                         overflow=ft.TextOverflow.ELLIPSIS,
                         size=13,
@@ -65,7 +64,10 @@ def crear_card_learn(anuncio: dict, page: ft.Page):
                         ),
                         height=35,
                         #width=120,
-                        on_click=lambda e: page.push_route('ideas.py')       # click en null
+                        on_click=lambda e: mostrar_detalle(e,metadatos)
+
+
+
                     )
                     ])))
  

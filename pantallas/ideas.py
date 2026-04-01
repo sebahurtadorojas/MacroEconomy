@@ -3,7 +3,7 @@ from data import cargar_cache_local,verificar_api_en_segundo_plano
 from tarjeta import crear_tarjeta,actualizar_card
 import threading
 
-def pantalla_ideas(page: ft.Page,funcion_alerta):
+def pantalla_ideas(page: ft.Page):
 
 
     
@@ -13,12 +13,12 @@ def pantalla_ideas(page: ft.Page,funcion_alerta):
     lista_tarjetas=ft.ListView(
                 expand=True,
                 padding=ft.Padding.symmetric(horizontal=16),
-                controls=[crear_tarjeta(i, page,funcion_alerta) for i in datos_iniciales],
+                controls=[crear_tarjeta(i, page) for i in datos_iniciales],
             )
 
 
     def puente_actualizar(nueva_data):
-        actualizar_card(nueva_data, page, lista_tarjetas, funcion_alerta)
+        actualizar_card(nueva_data, page, lista_tarjetas)
     hilo = threading.Thread(
             target=verificar_api_en_segundo_plano,
             args=('ideas', local_hash, puente_actualizar)

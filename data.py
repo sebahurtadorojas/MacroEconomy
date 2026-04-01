@@ -24,7 +24,7 @@ def verificar_mensajes(msg,callback_actualizar_ui):
 def verificar_api_en_segundo_plano(endpoint, local_hash, callback_actualizar_ui):
     """Consulta la API sin congelar la app y avisa si hay cambios."""
     cache_file = f'cache_{endpoint}.json'
-    url = f"https://tradingapp-eeix.onrender.com/{endpoint}" 
+    url = f" http://127.0.0.1:8000/{endpoint}" 
     
     try:
         response = requests.get(url, timeout=10)
@@ -98,29 +98,157 @@ def get_data_with_hash_check(endpoint):
     
 
 
-mensajes = [
-    {
-        "titulo": "🎉 Bienvenidos al nuevo ciclo",
-        "descripcion": "Nos complace anunciar el inicio del nuevo ciclo de actividades. Esperamos contar con su participación activa en todos los eventos programados este trimestre.",
+
+
+
+
+blog = [
+    {   "id":1,
+        "titulo": "1. Los 10 Principios de la Economía",
+        "meta_description":"Mankiw comienza su obra estableciendo 10 principios que rigen cómo las personas toman decisiones y cómo funciona la economía en su conjunto. Los últimos tres son los pilares de la",
+        "description": 
+        
+        """macroeconomía:
+
+Principio 8: El nivel de vida de un país depende de su capacidad para producir bienes y servicios (Productividad).
+Principio 9: Cuando el gobierno imprime demasiado dinero, los precios se incrementan (Inflación).
+Principio 10: La sociedad enfrenta a corto plazo una disyuntiva entre inflación y desempleo (Curva de Phillips)."""
+        
+        ,
         "icono": ft.icons.Icons.CAMPAIGN_OUTLINED,
         "color": "#6750A4",
         "etiqueta": "Anuncio",
     },
     {
-        "titulo": "🎉 Bienvenidos al nuevo ciclo",
-        "descripcion": "Nos complace anunciar el inicio del nuevo ciclo de actividades. Esperamos contar con su participación activa en todos los eventos programados este trimestre.",
+        "id":2,
+        "titulo": '2. Identidades y "Leyes" Clave en el Texto',
+        "meta_description":"nosonosoands",
+        "description": "Nos complace anunciar el inicio del nuevo ciclo de actividades. Esperamos contar con su participación activa en todos los eventos programados este trimestre.",
         "icono": ft.icons.Icons.CAMPAIGN_OUTLINED,
         "color": "#6750A4",
         "etiqueta": "Anuncio",
     },{
-        "titulo": "🎉 Bienvenidos al nuevo ciclo",
-        "descripcion": "Nos complace anunciar el inicio del nuevo ciclo de actividades. Esperamos contar con su participación activa en todos los eventos programados este trimestre.",
+        "id":3,
+        "titulo": "3. El Modelo de Oferta y Demanda Agregada",
+        "meta_description":"nosonosoands",
+        "description": "Nos complace anunciar el inicio del nuevo ciclo de actividades. Esperamos contar con su participación activa en todos los eventos programados este trimestre.",
         "icono": ft.icons.Icons.CAMPAIGN_OUTLINED,
         "color": "#6750A4",
         "etiqueta": "Anuncio",
     },
     ]
-    
+macros = [
+    {   "category":"Tasas",
+        "badge_text": "Sin Cambio",
+        "title":"Tasa de Interes",
+        "unit": "% tasa de referencia",
+        "icono": ft.icons.Icons.CAMPAIGN_OUTLINED,
+        "badge_color": "#6750A4",
+        "badge_bg": "#6750A4",
+        "value": 4.25,
+        "meta_description": "El Ba",
+        "description": "El Banco Central mantuvo tasas sin cambio en su reunión de marzo, a la espera de más datos",
+        "previous_label": "Dato anterior",
+        "previous_value": "4.5%",
+        "date": "Febrero 2026",
+    },{   "category":"Tasas",
+        "badge_text": "Déficit",
+        "title":"Tasa de Interes",
+        "unit": "% tasa de referencia",
+        "icono": ft.icons.Icons.CAMPAIGN_OUTLINED,
+        "badge_color": "#6750A4",
+        "badge_bg": "#6750A4",
+        "value": 4.25,
+        "meta_description": "El Ba",
+        "description": "El Banco Central mantuvo tasas sin cambio en su reunión de marzo, a la espera de más datos",
+        "previous_label": "Dato anterior",
+        "previous_value": "4.5%",
+        "date": "Febrero 2026",
+    }]
+macros = [
+    {
+        "category": "Tasas",
+        "badge_text": "Déficit",
+        "titulo": "Tasa de Interés",
+        "unit": "% tasa de referencia",
+        "icono": ft.icons.Icons.CAMPAIGN_OUTLINED,
+        "badge": "↑ Alta",
+        "badge_color": "#226424",
+        "badge_bg": "#72C275",
+        "value": 4.25,
+        "meta_description": "El Ba",
+        "description": "El Banco Central mantuvo tasas sin cambio en su reunión de marzo, a la espera de más datos",
+        "previous_label": "Dato anterior",
+        "previous_value": "4.5%",
+        "date": "Febrero 2026",
+    },
+    {
+        "category": "Tasas",
+        "badge_text": "Sin cambio",
+        "titulo": "Tasa de Interés",
+        "unit": "% tasa de referencia",
+        "icono": ft.icons.Icons.CAMPAIGN_OUTLINED,
+        "badge": "↑ Alta",
+        "badge_color": "#226424",
+        "badge_bg": "#72C275",
+        "value": 2.25,
+        "meta_description": "El Ba",
+        "description": "El Banco Central mantuvo tasas sin cambio en su reunión de marzo, a la espera de más datos",
+        "previous_label": "Dato anterior",
+        "previous_value": "4.5%",
+        "date": "Febrero 2026",
+    },
+    # === Los 3 nuevos datos ===
+
+    {
+        "category": "Inflación",
+        "badge_text": "Baja",
+        "titulo": "Inflación Mensual",
+        "unit": "% variación mensual",
+        "icono": ft.icons.Icons.TRENDING_UP,
+        "badge": "↑ Alta",
+        "badge_color": "#226424",
+        "badge_bg": "#72C275",
+        "value": 0.4,
+        "meta_description": "El Ba",
+        "description": "La inflación de marzo sorprendió al alza por el aumento en precios de alimentos y transporte",
+        "previous_label": "Dato anterior",
+        "previous_value": "0.2%",
+        "date": "Marzo 2026",
+    },
+    {
+        "category": "Empleo",
+        "badge_text": "Positivo",
+        "titulo": "Tasa de Desempleo",
+        "unit": "% de la fuerza laboral",
+        "icono": ft.icons.Icons.WORK_OUTLINE,
+        "badge": "↑ Alta",
+        "badge_color": "#226424",
+        "badge_bg": "#72C275",
+        "value": 8.1,
+        "meta_description": "El Ba",
+        "description": "La tasa de desempleo subió ligeramente debido a la desaceleración en el sector construcción",
+        "previous_label": "Dato anterior",
+        "previous_value": "7.8%",
+        "date": "Febrero 2026",
+    },
+    {
+        "category": "Crecimiento",
+        "badge_text": "Expansión",
+        "titulo": "IMACEC Mensual",
+        "unit": "% variación interanual",
+        "icono": ft.icons.Icons.SHOW_CHART,
+        "badge": "↑ Alta",
+        "badge_color": "#226424",
+        "badge_bg": "#72C275",
+        "value": 2.3,
+        "meta_description": "El Ba",
+        "description": "El IMACEC de febrero mostró un crecimiento moderado, impulsado principalmente por el sector minería",
+        "previous_label": "Dato anterior",
+        "previous_value": "1.9%",
+        "date": "Febrero 2026",
+    }
+]
 MACRO_DATA = [
     {
         "cat": "inflacion",

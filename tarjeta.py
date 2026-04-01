@@ -7,29 +7,12 @@ def actualizar_card(nueva_data,page: ft.Page,lista,funcion_alerta):
         lista.controls = [crear_tarjeta(m, page, funcion_alerta) for m in nueva_data]
         page.update() # Refresca solo esta parte de la pantalla
 
-def crear_tarjeta(anuncio: dict, page: ft.Page,al_activar):
+def crear_tarjeta(anuncio: dict, page: ft.Page):
 
 
 
 
-
-    alarm_icon = ft.IconButton(
-        icon=ft.icons.Icons.ALARM_ADD_OUTLINED,
-        icon_color=ft.Colors.with_opacity(0.4, ft.Colors.ON_SURFACE),
-        icon_size=20,
-        tooltip="Alarma",
-    )
-
-    def toggle_alarm(e):
-        anuncio["alarm"] = not anuncio["alarm"]
-        alarm_icon.icon = ft.icons.Icons.ALARM if anuncio["alarm"] else ft.icons.Icons.ALARM_ADD_OUTLINED
-        alarm_icon.icon_color = ft.Colors.RED_400 if anuncio["alarm"] else ft.Colors.with_opacity(0.4, ft.Colors.ON_SURFACE)
-        if anuncio["alarm"]:
-            al_activar(e)
-            #obtener_datos(e)
-        page.update()
-
-    alarm_icon.on_click = toggle_alarm
+    page.update()
 
 
 
@@ -218,7 +201,6 @@ def crear_tarjeta(anuncio: dict, page: ft.Page,al_activar):
                                             color=ft.Colors.with_opacity(0.45, ft.Colors.ON_SURFACE)),
                                 ],
                             ),
-                            alarm_icon,
                         ],
                         vertical_alignment=ft.CrossAxisAlignment.CENTER,
                     ),
